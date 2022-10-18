@@ -2,6 +2,13 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
+const UserJobs = require('./models/userModel');
+const mongoose = require('mongoose');
+
+const myURI = 'mongodb+srv://jigglypuff:jigglypuff1@cluster0.qgbjfs3.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(URI, { dbName: 'JobTracker' })
+  .then(() => console.log('successfully connected to database'))
+  .catch(error => console.log(error));
 
 
 // import router
