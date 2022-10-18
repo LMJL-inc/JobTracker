@@ -3,15 +3,15 @@ const router = express.Router();
 
 const jobController = require('../controllers/jobController.js')
 
-router.get('/',(req,res,next) => {
+router.get('/',(req, res) => {
     return res.status(200).json(res.locals.allJobs)
 })
 
-router.post('/',(req,res,next) => {
+router.post('/',(req, res) => {
     return res.status(200).json(res.locals.allJobs)
 })
 
-router.delete('/',(req,res,next) => {
+router.delete('/',(req, res) => {
     return res.status(200).json(res.locals.allJobs)
 })
 
