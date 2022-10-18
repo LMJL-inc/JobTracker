@@ -3,16 +3,35 @@ const router = express.Router();
 
 const jobController = require('../controllers/jobController.js')
 
-router.get('/',(req, res) => {
-    return res.status(200).json(res.locals.allJobs)
+// gets jobs documents from jobs collections
+router.get('/', 
+jobController.getJobsByStatus,
+(req, res) => {
+    return res.status(200).json(res.locals.jobs)
 })
 
-router.post('/',(req, res) => {
-    return res.status(200).json(res.locals.allJobs)
+// posts new jobs document to jobs collection
+router.post('/', 
+jobController.addJob,
+(req, res) => {
+    return res.status(201).json(res.locals.newJobMessage)
 })
 
-router.delete('/',(req, res) => {
-    return res.status(200).json(res.locals.allJobs)
+// deletes jobs document from jobs collection
+router.delete('/deleteJob', jobController.deleteJob, (req, res) => {
+    return res.sendStatus(200);
+})
+
+// updates status in jobs document in jobs collection
+router.patch('/status', 
+    jobController.updateJobStatus,
+    (req,res) => {
+        return res.sendStatus(200)
+})
+
+// updates general info in jobs document in jobs collection
+router.patch('/details', jobController.updateJobDetails, (req, res) => {
+    return res.sendStatus(200);
 })
 
 module.exports = router;
