@@ -41,12 +41,12 @@ Install my-project with npm
     
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license. See LICENSE.md for more details.
 
 
-## Authors
+## Contributors
 
-- [@Luke M](https://github.com/mciluke)
-- [@Mike M](https://github.com/MichaelMezhiritskiy)
-- [@Luis Navarro](https://github.com/luis-e-navarro)
-- [@Juan Kang](https://github.com/juanpakang)
+- Luke McInerney: [GitHub](https://github.com/mciluke) | [LinkedIn](https://www.linkedin.com/in/luke-mcinerney/)
+- Michael Mezhiritskiy: [GitHub](https://github.com/MichaelMezhiritskiy) | [LinkedIn](https://www.linkedin.com/in/michael-mezhiritskiy/)
+- Luis Navarro: [GitHub](https://github.com/luis-e-navarro) | [LinkedIn](https://www.linkedin.com/in/luis-e-navarro/)
+- Juan Kang: [GitHub](https://github.com/juanpakang) | [LinkedIn](https://www.linkedin.com/in/juankang/)
