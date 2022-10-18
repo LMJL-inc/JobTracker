@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <div>Hello React is working</div>
+      {/* <div>Hello React is working</div> */}
       <StatusContainer />
       <MainContainer />
     </>

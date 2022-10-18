@@ -40,7 +40,7 @@ export default function AddJob(props) {
     // a form
     <section className="p-3 col-5 container">
       <div className="mb-3">
-        <label className="form-label">Company Name</label>
+        <label htmlFor="companyName" className="form-label">Company Name</label>
         <input type="text" id="companyName" className="form-control" value={values.companyName} onChange={handleChange} />
       </div>
       <div className="mb-3">
@@ -53,7 +53,7 @@ export default function AddJob(props) {
       </div>
       <div className="mb-3">
         <label className="form-label">Link to Job</label>
-        <input type="text" id="linkToJob" className="form-control" value={values.jobLink} onChange={handleChange} />
+        <input type="text" id="linkToJob" className="form-control" value={values.linkToJob} onChange={handleChange} />
       </div>
       <div className="mb-3">
         <label className="form-label">Referral</label>
