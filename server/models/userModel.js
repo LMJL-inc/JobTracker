@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-require('dotenv').config(); //hide mongoDB credentials in .env file
 
+const { Schema } = mongoose;
+require('dotenv').config(); // hide mongoDB credentials in .env file
 
-//connect to mongoDB database
+// connect to mongoDB database
 mongoose.connect(process.env.MONGO_URI, { dbName: 'JobTracker' })
   .then(() => console.log('successfully connected to database'))
-  .catch(error => console.log(error));
+  .catch((error) => console.log(error));
 
-//schema for user verification
-const userSchema = new Schema ({
+// schema for user verification
+const userSchema = new Schema({
   username: { type: String, required: true },
   userId: Schema.Types.ObjectId,
   password: { type: String, required: true },
 });
 
-//schema for adding jobs, related to username
-const jobSchema = new Schema ({
+// schema for adding jobs, related to username
+const jobSchema = new Schema({
   username: { type: String, require: true },
   companyName: String,
   created_at: { type: Date, default: Date.now() },
@@ -30,15 +30,14 @@ const jobSchema = new Schema ({
     salary: Number,
     notes: String,
     hiringDate: Date,
-    startingDate: Date
+    startingDate: Date,
   },
 });
-
 
 const Users = mongoose.model('users', userSchema);
 const Jobs = mongoose.model('jobs', jobSchema);
 
 module.exports = {
   Users,
-  Jobs
+  Jobs,
 };
