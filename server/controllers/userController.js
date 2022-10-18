@@ -6,6 +6,11 @@ module.exports = {
     // creates new user in database
     async userSignup(req, res, next) {
         const { username, password } = req.body;
+        //check that the username and password are both not empty
+        if (!username.length || !password.length) {
+            res.locals.validSignup = false;
+            return next();
+        }
         try {
 
             // mongodb method used to check if user exists in database
@@ -42,6 +47,11 @@ module.exports = {
     // validates user logging in
     async userLogin(req,res,next) {
         const { username, password } = req.body;
+        //check that the username and password are both not empty
+        if (!username.length || !password.length) {
+            res.locals.validLogin = false;
+            return next();
+        }
         try {
             
             // mongodb method used to see if username exists in user collection
