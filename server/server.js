@@ -4,9 +4,7 @@ const path = require('path');
 const PORT = 3000;
 
 
-
-
-// import router
+// import routers
 const jobRouter = require('./routes/jobRouter.js')
 const userRouter = require('./routes/userRouter.js')
 
@@ -20,7 +18,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname,'../client/index.html'));
 });
 
-// serve to localhost:3000
+// serving to localhost:3000
 app.get("/backend", (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../dist/bundle.js"));
 });
@@ -29,11 +27,12 @@ app.get("/backend", (req, res) => {
 app.use('/api/jobs', jobRouter);
 app.use('/api/user', userRouter);
 
+// catch all path handler
 app.use((req, res, next)=>{
   return res.status(404).send('No page found');
 });
 
-//global error handler
+// global error handler
 app.use((err, res, req, next)=>{
   const defaultErr = {
     log: 'Express error handler caught unknown error',
@@ -45,6 +44,8 @@ app.use((err, res, req, next)=>{
   return res.status(errorObj.status).send(errorObj.message);
 });
 
+
+// listening on port
 app.listen(PORT, ()=>{
   console.log(`Server listening to PORT: ${PORT}...`);
 });
