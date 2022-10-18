@@ -3,12 +3,19 @@ const router = express.Router();
 
 const userController = require('../controllers/userController.js')
 
-router.post('/signup',(req,res,next) => {
-    return res.status(200).json(res.locals.allJobs)
+//create user or return false if invalid credentials
+router.post('/signup',
+  userController.userSignup,
+  (req, res) => {
+    return res.status(200).json(res.locals.validSignup)
 })
 
-router.delete('/login',(req,res,next) => {
-    return res.status(200).json(res.locals.allJobs)
+//check whether username exists in database 
+//if the username exists, compare hashes with the input password
+router.post('/login',
+    userController.userLogin,
+    (req, res) => {
+    return res.status(200).json(res.locals.validLogin)
 })
 
 module.exports = router;
