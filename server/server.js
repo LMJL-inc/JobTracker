@@ -3,10 +3,15 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
+
+// import router
+const jobRouter = require('./routes/jobRouter.js')
+const userRouter = require('./routes/userRouter.js')
+
 // parse information coming from the front-end
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
+
 
 
 app.get('/', (req,res,next)=>{
@@ -16,7 +21,9 @@ app.get('/', (req,res,next)=>{
 app.use(express.static(path.resolve('./client/index.js')));
 
 
-
+// routes
+app.use('/jobs', jobRouter);
+app.use('/user', userRouter);
 
 app.use((req,res,next)=>{
   return res.status(404).send('No page found');
