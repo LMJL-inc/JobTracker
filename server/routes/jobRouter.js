@@ -19,7 +19,7 @@ jobController.addJob,
 
 // deletes jobs document from jobs collection
 router.delete('/deleteJob', jobController.deleteJob, (req, res) => {
-    return res.status(200).send('job has been deleted by unique id')
+    return res.sendStatus(200);
 })
 
 // updates status in jobs document in jobs collection
