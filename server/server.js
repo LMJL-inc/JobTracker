@@ -1,39 +1,33 @@
 const express = require('express');
+
 const app = express();
 const path = require('path');
+
 const PORT = 3000;
 
-
 // import routers
-const jobRouter = require('./routes/jobRouter.js')
-const userRouter = require('./routes/userRouter.js')
+const jobRouter = require('./routes/jobRouter');
+const userRouter = require('./routes/userRouter');
 
 // parse information coming from the front-end
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 // serving dynamic files
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname,'../client/index.html'));
-});
+app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
 
 // serving to localhost:3000
-app.get("/backend", (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, "../dist/bundle.js"));
-});
+app.get('/backend', (req, res) => res.status(200).sendFile(path.join(__dirname, '../dist/bundle.js')));
 
 // routes
 app.use('/api/jobs', jobRouter);
 app.use('/api/user', userRouter);
 
 // catch all path handler
-app.use((req, res, next)=>{
-  return res.status(404).send('No page found');
-});
+app.use((req, res, next) => res.status(404).send('No page found'));
 
 // global error handler
-app.use((err, res, req, next)=>{
+app.use((err, res, req, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown error',
     status: 500,
@@ -44,9 +38,8 @@ app.use((err, res, req, next)=>{
   return res.status(errorObj.status).send(errorObj.message);
 });
 
-
 // listening on port
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log(`Server listening to PORT: ${PORT}...`);
 });
 

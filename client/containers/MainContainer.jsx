@@ -16,19 +16,19 @@ export default function MainContainer(props) {
       />
       <Route
         path="/applied"
-        element={<JobTable status="Applied" />}
+        element={<JobTable status="applied" />}
       />
       <Route
         path="/interviewing"
-        element={<JobTable status="Interviewing" />}
+        element={<JobTable status="interviewing" />}
       />
       <Route
         path="/denied"
-        element={<JobTable status="Denied" />}
+        element={<JobTable status="denied" />}
       />
       <Route
         path="/offers"
-        element={<JobTable status="Offers" />}
+        element={<JobTable status="offers" />}
       />
     </Routes>
   );

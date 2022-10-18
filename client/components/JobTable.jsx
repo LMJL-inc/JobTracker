@@ -1,37 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const getJobs = async (status) => {
   try {
-    const res = await fetch(`/api/jobs?status=${status}`);
+    const res = await fetch(`/api/jobs?username=mario&status=${status}`);
     const resJson = await res.json();
     if (res.status === 200) {
-      console.log('retrieved jobs.');
+      console.log(resJson);
       return resJson;
     }
     console.log('failed to get jobs.');
   } catch (err) {
     console.log(err);
   }
-  return null;
+  return [];
 };
 
 export default function JobTable({ status }) {
-  // props.status == Applied
-  const jobs = getJobs(status);
-  jobs.map((job) => (
-    <tr>
-      <th scope="row">1</th>
-      <td>{job.companyName}</td>
-      <td>{job.jobTitle}</td>
-      <td>{job.status}</td>
-      <td>{job.dateApplied}</td>
-      <td>{job.linkToJob}</td>
-      <td>{job.referral}</td>
-      <td>{job.notes}</td>
-      <td>{job.referral}</td>
-      <td><button type="button" className="btn btn-info w-100 h-100">Update</button></td>
-    </tr>
-  ));
+  // props.status == applied
+
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    getJobs(status)
+      .then((data) => {
+        setJobs(data.map((job, ind) => (
+          <tr>
+            <th scope="row">{ind + 1}</th>
+            <td>{job.companyName}</td>
+            <td>{job.jobTitle}</td>
+            <td>{job.status}</td>
+            <td>{job.dateApplied}</td>
+            <td>{job.linkToJob}</td>
+            <td>{job.referral}</td>
+            <td>{job.notes}</td>
+            <td><button type="button" className="btn btn-info w-100 h-100">Update</button></td>
+          </tr>
+        )));
+      });
+  }, []);
+  console.log('rendered table');
   return (
     <section className="p-4">
       <div className="container">

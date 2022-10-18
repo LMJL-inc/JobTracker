@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 export default function AddJob(props) {
   const defaultValues = {
+    username: 'luke',
     companyName: '',
     jobTitle: '',
     dateApplied: '',
@@ -24,6 +25,9 @@ export default function AddJob(props) {
       const res = await fetch('/api/jobs', {
         method: 'POST',
         body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
       const resJson = await res.json();
       if (res.status === 200) {
