@@ -13,7 +13,7 @@ export default function Header({ session }) {
         {session && (
         <div className="d-flex" role="button">
           <Link to="/add" className="btn btn-outline-success m-1" type="submit">Add New Job</Link>
-          <Link className="btn btn-outline-danger m-1" type="submit" to="/" onClick={dispatch(setUsername('you are not logged in'))}>Logout</Link>
+          <Link className="btn btn-outline-danger m-1" type="submit" to="/">Logout</Link>
         </div>
         )}
       </div>
