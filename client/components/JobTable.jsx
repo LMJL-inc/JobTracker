@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+// import { useSelector } from 'react-redux';
+
+// const username = useSelector((state) => state.setUser.username);
 
 const getJobs = async (status) => {
   try {
@@ -16,11 +19,10 @@ const getJobs = async (status) => {
 };
 
 export default function JobTable({ status }) {
-  // props.status == applied
-
   const [jobs, setJobs] = useState([]);
   const [currentJob, setCurrentJob] = useState({});
-  useEffect(() => {
+
+  const renderJobs = (status) => {
     getJobs(status)
       .then((data) => {
         setJobs(data.map((job, ind) => (
@@ -41,57 +43,8 @@ export default function JobTable({ status }) {
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 onClick={(e) => {
-                  console.log(e.target.id);
-                  console.log(data);
-                  console.log(data.filter((element) => element._id == e.target.id));
-                  setCurrentJob(data[0]);
-                }}
-              >
-                Update
-              </button>
-
-            </td>
-          </tr>
-        )));
-      })
-      .catch((err) => console.log(err));
-  }, [status]);
-
-  const handleUpdate = () => {
-    console.log(currentJob);
-    fetch('/api/jobs/details', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(currentJob),
-    })
-      .then(() => console.log('fetch resolved'))
-      .catch((err) => console.log(err));
-    getJobs(status)
-      .then((data) => {
-        setJobs(data.map((job, ind) => (
-          <tr>
-            <th scope="row">{ind + 1}</th>
-            <td>{job.companyName}</td>
-            <td>{job.jobTitle}</td>
-            <td>{job.status}</td>
-            <td>{job.dateApplied}</td>
-            <td>{job.linkToJob}</td>
-            <td>{job.referral}</td>
-            <td>{job.notes}</td>
-            <td>
-              <button
-                type="button"
-                id={job._id}
-                className="btn btn-info w-100 h-100"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                onClick={(e) => {
-                  console.log(e.target.id);
-                  console.log(data);
-                  console.log(data.filter((element) => element._id == e.target.id));
-                  setCurrentJob(data[0]);
+                  console.log(data.filter((element) => element._id == e.target.id)[0]);
+                  setCurrentJob(data.filter((element) => element._id == e.target.id)[0]);
                 }}
               >
                 Update
@@ -104,12 +57,43 @@ export default function JobTable({ status }) {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    renderJobs(status);
+  }, [status]);
+
+  const handleUpdate = () => {
+    console.log(currentJob);
+    fetch('/api/jobs/details', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(currentJob),
+    })
+      .then(() => renderJobs(status))
+      .catch((err) => console.log(err));
+    renderJobs(status);
+  };
+
+  const handleDelete = () => {
+    console.log(currentJob);
+    fetch('/api/jobs/deleteJob', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id: currentJob._id }),
+    })
+      .then(() => renderJobs(status))
+      .catch((err) => console.log(err));
+  };
+
   console.log('rendered table');
   return (
     <section className="p-4">
       <div className="container">
         <h1>
-          Your status is:
+          This page status is:
           {' '}
           {status}
         </h1>
@@ -173,7 +157,10 @@ export default function JobTable({ status }) {
               </form>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={handleDelete}>
+                <i className="bi bi-trash3" />
+                &nbsp;Delete
+              </button>
               <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleUpdate}>Update</button>
             </div>
           </div>

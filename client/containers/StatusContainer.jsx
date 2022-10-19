@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export default function StatusContainer(props) {
+export default function StatusContainer(status) {
   const [statusNum, setStatusNum] = useState({
     applied: 0,
     interviewing: 0,
@@ -14,15 +14,15 @@ export default function StatusContainer(props) {
   const username = useSelector((state) => state.setUser.username);
 
   useEffect(() => {
+    const obj = {
+      applied: 0,
+      interviewing: 0,
+      denied: 0,
+      offered: 0,
+    };
     fetch(`/api/jobs/user?username=${username}`)
       .then((response) => response.json())
       .then((data) => {
-        const obj = {
-          applied: 0,
-          interviewing: 0,
-          denied: 0,
-          offered: 0,
-        };
         console.log(data);
         // eslint-disable-next-line no-restricted-syntax
         for (const job of data) {
@@ -34,8 +34,8 @@ export default function StatusContainer(props) {
         setStatusNum(obj);
       })
       .catch((err) => console.log(err));
-  }, []);
-
+  }, [status]);
+  console.log(statusNum);
   return (
     <section className="p-4">
       {/*
@@ -53,10 +53,26 @@ export default function StatusContainer(props) {
       <div className="container " id="status-container">
         <div className="row justify-content-center py-600">
           <div className="col-10 btn-group">
-            <Link to="/applied" type="button" className="btn btn-primary w-100 h-100">Applied: {statusNum.applied}</Link>
-            <Link to="/interviewing" type="button" className="btn btn-warning w-100 h-100">Interviewing: {statusNum.interviewing}</Link>
-            <Link to="/denied" type="button" className="btn btn-danger w-100 h-100">Denied: {statusNum.denied}</Link>
-            <Link to="/offers" type="button" className="btn btn-success w-100 h-100">Offers: {statusNum.offered}</Link>
+            <Link to="/applied" type="button" className="btn btn-primary w-100 h-100">
+              Applied:
+              {' '}
+              {statusNum.applied}
+            </Link>
+            <Link to="/interviewing" type="button" className="btn btn-warning w-100 h-100">
+              Interviewing:
+              {' '}
+              {statusNum.interviewing}
+            </Link>
+            <Link to="/denied" type="button" className="btn btn-danger w-100 h-100">
+              Denied:
+              {' '}
+              {statusNum.denied}
+            </Link>
+            <Link to="/offers" type="button" className="btn btn-success w-100 h-100">
+              Offers:
+              {' '}
+              {statusNum.offered}
+            </Link>
           </div>
         </div>
       </div>

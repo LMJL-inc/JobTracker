@@ -26,7 +26,7 @@ export default function MainContainer(props) {
         path="/applied"
         element={(
           <>
-            <StatusContainer />
+            <StatusContainer status="applied" />
             <JobTable status="applied" />
           </>
 )}
@@ -35,7 +35,7 @@ export default function MainContainer(props) {
         path="/interviewing"
         element={(
           <>
-            <StatusContainer />
+            <StatusContainer status="interviewing" />
             <JobTable status="interviewing" />
           </>
 )}
@@ -44,7 +44,7 @@ export default function MainContainer(props) {
         path="/denied"
         element={(
           <>
-            <StatusContainer />
+            <StatusContainer status="denied" />
             <JobTable status="denied" />
           </>
 )}
@@ -53,7 +53,7 @@ export default function MainContainer(props) {
         path="/offers"
         element={(
           <>
-            <StatusContainer />
+            <StatusContainer status="offers" />
             <JobTable status="offers" />
           </>
 )}
