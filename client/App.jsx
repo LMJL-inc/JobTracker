@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
       {/* <div>Hello React is working</div> */}
-      <StatusContainer />
+      {/* <StatusContainer /> */}
       <MainContainer />
     </>
   );
