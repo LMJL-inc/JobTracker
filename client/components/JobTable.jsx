@@ -92,11 +92,11 @@ export default function JobTable({ status }) {
   return (
     <section className="p-4">
       <div className="container">
-        <h1>
+        {/* <h3>
           This page status is:
           {' '}
           {status}
-        </h1>
+        </h3> */}
         <table className="table table-bordered table-striped">
           <thead>
             <tr>

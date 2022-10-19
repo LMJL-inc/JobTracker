@@ -7,7 +7,7 @@ import Header from './components/Header';
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {/* <div>Hello React is working</div> */}
       {/* <StatusContainer /> */}
       <MainContainer />

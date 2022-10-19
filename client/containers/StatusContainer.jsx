@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function StatusContainer(status) {
+  console.log('status container rendered');
   const [statusNum, setStatusNum] = useState({
     applied: 0,
     interviewing: 0,
