@@ -18,7 +18,7 @@ function Login() {
       },
     })
       .then((response) => response.json())
-      .then((response) => (response ? navigate('/addJob') : setErrorMessage('Invalid username of password')))
+      .then((response) => (response ? navigate('/add') : setErrorMessage('Invalid username of password')))
       .catch((err) => console.log(err));
   };
 
@@ -32,7 +32,7 @@ function Login() {
       },
     })
       .then((response) => response.json())
-      .then((response) => (response ? navigate('/addJob') : setErrorMessage('Invalid username of password')))
+      .then((response) => (response ? navigate('/add') : setErrorMessage('Invalid username of password')))
       .catch((err) => console.log(err));
   };
 

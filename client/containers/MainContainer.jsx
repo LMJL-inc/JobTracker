@@ -14,7 +14,7 @@ export default function MainContainer(props) {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route
-        path="/addJob"
+        path="/add"
         element={(
           <>
             <StatusContainer />
