@@ -9,6 +9,10 @@ router.get(
   (req, res) => res.status(200).json(res.locals.jobs),
 );
 
+router.get('/user', jobController.getJobsByUser, (req, res) => {
+  res.status(200).json(res.locals.jobs);
+});
+
 // posts new jobs document to jobs collection
 router.post(
   '/',

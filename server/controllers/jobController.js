@@ -102,5 +102,22 @@ module.exports = {
       });
     }
   },
+   async getJobsByUser(req, res, next) {
+    const { username } = req.query;
+    try {
+      console.log(req.query);
+      // mongodb method used to find all jobs documents
+      // eslint-disable-next-line object-shorthand
+      const data = await Jobs.find({ username: username });
+      res.locals.jobs = data;
+      return next();
+    } catch (err) {
+      return next({
+        message: `Error in jobController.getJobsByStatus: ${err}`,
+        status: 500,
+        log: 'Something went wrong in jobController.getJobsByStatus middleware function',
+      });
+    }
+  },
 
 };
