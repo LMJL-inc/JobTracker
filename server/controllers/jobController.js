@@ -13,10 +13,10 @@ module.exports = {
   async addJob(req, res, next) {
     try {
       const { username, companyName, jobTitle } = req.body;
-      console.log(req.body);
+
       // mongodb method used to find existing application
       const data = await Jobs.findOne({ username, companyName, jobTitle });
-      //   console.log(req.body);
+
       if (!data) {
         const newJob = await new Jobs(req.body);
 
@@ -105,7 +105,6 @@ module.exports = {
    async getJobsByUser(req, res, next) {
     const { username } = req.query;
     try {
-      console.log(req.query);
       // mongodb method used to find all jobs documents
       // eslint-disable-next-line object-shorthand
       const data = await Jobs.find({ username: username });
