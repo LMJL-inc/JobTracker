@@ -42,7 +42,7 @@ export default function AddJob(props) {
   };
   return (
     // a form
-    <section className="p-3 col-5 container">
+    <section className="px-3 col-5 container">
       <div className="mb-3">
         <label htmlFor="companyName" className="form-label">Company Name</label>
         <input type="text" id="companyName" className="form-control" value={values.companyName} onChange={handleChange} />

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // const username = useSelector((state) => state.setUser.username);
 
-const getJobs = async (status) => {
+const getJobs = async (status, username) => {
   try {
-    const res = await fetch(`/api/jobs?username=luke&status=${status}`);
+    const res = await fetch(`/api/jobs?username=${username}&status=${status}`);
     const resJson = await res.json();
     if (res.status === 200) {
       console.log(resJson);
@@ -22,8 +22,9 @@ export default function JobTable({ status }) {
   const [jobs, setJobs] = useState([]);
   const [currentJob, setCurrentJob] = useState({});
 
+  const username = useSelector((state) => state.setUser.username);
   const renderJobs = (status) => {
-    getJobs(status)
+    getJobs(status, username)
       .then((data) => {
         setJobs(data.map((job, ind) => (
           <tr>
@@ -90,7 +91,7 @@ export default function JobTable({ status }) {
 
   console.log('rendered table');
   return (
-    <section className="p-4">
+    <section className="px-4">
       <div className="container">
         {/* <h3>
           This page status is:
@@ -137,6 +138,7 @@ export default function JobTable({ status }) {
                   <label htmlFor="statusUpdate" className="col-form-label">Status:</label>
                   <input type="text" className="form-control" value={currentJob.status} onChange={(event) => setCurrentJob({ ...currentJob, status: event.target.value })} id="statusUpdate" />
                 </div>
+
                 <div className="mb-3">
                   <label htmlFor="dateAppliedUpdate" className="col-form-label">Date Applied:</label>
                   <input type="text" className="form-control" value={currentJob.dateApplied} onChange={(event) => setCurrentJob({ ...currentJob, dateApplied: event.target.value })} id="dateAppliedUpdate" />

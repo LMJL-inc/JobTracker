@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'; 
+import { useDispatch } from 'react-redux';
 import { setUsername } from '../redux/userSlice';
 
 function Login() {
@@ -60,8 +60,8 @@ function Login() {
       </div>
       {errorMessage}
       <div className="col-auto">
-        <button type="submit" className="btn btn-primary mb-3" onClick={handleLogin}>Login</button>
-        <button type="submit" className="btn btn-primary mb-3" onClick={handleSignup}>Signup</button>
+        <button type="submit" className="btn btn-primary mb-3 me-1" onClick={handleLogin}>Login</button>
+        <button type="submit" className="btn btn-primary mb-3 me-1" onClick={handleSignup}>Signup</button>
       </div>
     </section>
   );
