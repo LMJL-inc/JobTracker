@@ -36,11 +36,16 @@ export default function JobTable({ status }) {
           </tr>
         )));
       });
-  }, []);
+  }, [status]);
   console.log('rendered table');
   return (
     <section className="p-4">
       <div className="container">
+        <h1>
+          Your status is:
+          {' '}
+          {status}
+        </h1>
         <table className="table table-bordered table-striped">
           <thead>
             <tr>
