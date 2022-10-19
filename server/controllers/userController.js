@@ -1,6 +1,12 @@
-const { Users } = require('../models/userModel.js');
+const { Users } = require('../models/schemas.js');
 const bcrypt = require('bcrypt');
 const SALT = 3;
+
+const mongoose = require('mongoose');
+// connect to mongoDB database
+mongoose.connect(process.env.MONGO_URI, { dbName: 'JobTracker' })
+  .then(() => console.log('successfully connected to database'))
+  .catch((error) => console.log(error));
 
 module.exports = {
     // creates new user in database
