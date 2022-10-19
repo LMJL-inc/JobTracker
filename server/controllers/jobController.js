@@ -1,4 +1,11 @@
-const { Jobs } = require('../models/userModel.js');
+const { Jobs } = require('../models/schemas');
+const mongoose = require('mongoose');
+require('dotenv').config(); // hide mongoDB credentials in .env file
+
+// connect to mongoDB database
+mongoose.connect(process.env.MONGO_URI, { dbName: 'JobTracker' })
+  .then(() => console.log('successfully connected to database'))
+  .catch((error) => console.log(error));
 
 module.exports = {
 

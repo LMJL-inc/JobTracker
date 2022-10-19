@@ -1,7 +1,5 @@
 const express = require('express');
-
 const router = express.Router();
-
 const jobController = require('../controllers/jobController.js');
 
 // gets jobs documents from jobs collections
@@ -19,7 +17,9 @@ router.post(
 );
 
 // deletes jobs document from jobs collection
-router.delete('/deleteJob', jobController.deleteJob, (req, res) => res.sendStatus(200));
+router.delete('/deleteJob',
+  jobController.deleteJob,
+    (req, res) => res.sendStatus(200));
 
 // updates status in jobs document in jobs collection
 router.patch(
@@ -29,6 +29,8 @@ router.patch(
 );
 
 // updates general info in jobs document in jobs collection
-router.patch('/details', jobController.updateJobDetails, (req, res) => res.sendStatus(200));
+router.patch('/details',
+  jobController.updateJobDetails,
+    (req, res) => res.sendStatus(200));
 
 module.exports = router;
