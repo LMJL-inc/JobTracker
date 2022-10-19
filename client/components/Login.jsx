@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
+import { setUsername } from '../redux/userSlice';
 
 function Login() {
-  // const usernameRef = useRef(null);
-  // const passwordRef = useRef(null);
-  // const [credentials, setCredentials] = useState({username: '', password: ''});
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // handle login/ handle signup. BODY: document.getElementById("password")
   const handleSignup = () => {
     const credentials = { username: document.querySelector('#username').value, password: document.querySelector('#password').value };
@@ -18,7 +18,13 @@ function Login() {
       },
     })
       .then((response) => response.json())
-      .then((response) => (response ? navigate('/add') : setErrorMessage('Invalid username of password')))
+      .then((response) => {
+        if (response) {
+          dispatch(setUsername(document.querySelector('#username').value));
+          return navigate('/add');
+        }
+        return setErrorMessage('Invalid username of password');
+      })
       .catch((err) => console.log(err));
   };
 
@@ -32,7 +38,13 @@ function Login() {
       },
     })
       .then((response) => response.json())
-      .then((response) => (response ? navigate('/add') : setErrorMessage('Invalid username of password')))
+      .then((response) => {
+        if (response) {
+          dispatch(setUsername(document.querySelector('#username').value));
+          return navigate('/add');
+        }
+        return setErrorMessage('Invalid username of password');
+      })
       .catch((err) => console.log(err));
   };
 
